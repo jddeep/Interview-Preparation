@@ -11,7 +11,7 @@ Hence we take memoized bottom up DP approach.
 */
 class Solution
 {
-    static int longestIncSubs(int[] arr){
+    static int longestIncSubs(int[] arr){ // TC - O(n2)
         int n = arr.length;
         if(n == 0) return 0;
         int[] lenArr = new int[n];
@@ -27,6 +27,41 @@ class Solution
             if(lenArr[i]>ans) ans = lenArr[i];
         }
         return ans;
+    }
+	
+	static int ceilIndex(int[] a , int r, int l, int key){
+        
+        while(r > l+1){
+            int m = l + (r-l)/2;
+            
+            if(key > a[m]){
+                l = m;
+            }else r = m;
+        }
+        return r;
+    }
+    
+    
+    static int longestIncSubs(int[] arr){ // TC - O(nlogn)
+        
+        int[] a = new int[arr.length];
+        a[0] = arr[0];
+        int len =1;
+        
+        for(int i = 1;i<arr.length;i++){
+            
+            if(arr[i]<arr[0]){
+                arr[0] = arr[i];
+                
+            }
+            else if(arr[i]>arr[len-1]){
+                arr[len++] = arr[i];
+            }else{
+                arr[ceilIndex(a, len-1, -1, arr[i])] = arr[i];
+            }
+        }
+        
+        return len;
     }
     
 	public static void main (String[] args) throws java.lang.Exception
