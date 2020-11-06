@@ -1,5 +1,5 @@
 /*
-Using Juggling Algorithm to left rotate given array.
+Using Juggling Algorithm to left rotate given array by k places.
 index can be started from end to right rotate as well.
 TC - O(n)
 SC - O(1)
@@ -50,6 +50,6 @@ class Solution
 		
 		rotate(arr, 3);
 		
-		System.out.println(Arrays.toString(arr));
+		System.out.println(Arrays.toString(arr)); // OP - [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3]
 	}
 }
